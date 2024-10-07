@@ -5,11 +5,8 @@ const AppLayout = () => {
   return (
     <div className="relative flex justify-start">
       <NavBar />
-      <div className="lg:m-l-52">
+      <div className="lg:m-l-52 max-w-xl container px-2 mx-auto">
         <Outlet />
-
-        {/* <h1 className="text-3xl font-bold underline">Vite + React</h1>
-        <Button>Клик</Button> */}
       </div>
     </div>
   );
