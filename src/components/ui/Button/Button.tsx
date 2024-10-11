@@ -1,13 +1,31 @@
 import { FC } from "react";
 type Props = {
-  children: string | JSX.Element | JSX.Element[];
+  children: string | JSX.Element | JSX.Element[] | string[];
+  size?: "small" | "normal" | "big";
+  variant?: "contained" | "outlined";
+  color?: "secondary" | "primary";
+  shape?: "round" | "square";
+  classes?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onClick?: () => any;
 };
 
 const Button: FC<Props> = (props: Props) => {
-  const { children } = props;
+  const {
+    children,
+    size = "",
+    variant = "contained",
+    color = "primary",
+    classes,
+    shape = "",
+    onClick = () => {},
+  } = props;
 
   return (
-    <button className="p-2 bg-indigo-500 text-white rounded-md m-1">
+    <button
+      onClick={onClick}
+      className={`btn ${size} ${variant} ${color} ${shape} ${classes}`}
+    >
       {children}
     </button>
   );

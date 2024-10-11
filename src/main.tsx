@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+import "dayjs/locale/ru";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -23,6 +25,8 @@ const router = createBrowserRouter([
     ],
   },
 ]);
+
+dayjs.locale("ru");
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

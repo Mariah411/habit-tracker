@@ -5,7 +5,7 @@ const AppLayout = () => {
   return (
     <div className="relative flex justify-start">
       <NavBar />
-      <div className="lg:m-l-52 max-w-xl container px-2 mx-auto">
+      <div className="lg:m-l-52 max-w-2xl container px-2 mx-auto">
         <Outlet />
       </div>
     </div>
