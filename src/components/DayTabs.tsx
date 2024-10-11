@@ -32,7 +32,7 @@ const DayTabs: FC<Props> = (props: Props) => {
 
   return (
     <>
-      <div className="flex justify-evenly my-4">
+      <div className="flex justify-evenly my-6">
         {week.map((day) => (
           <>
             {day.isSame(today) ? (
