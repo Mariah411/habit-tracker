@@ -1,13 +1,13 @@
 import { FC } from "react";
 type Props = {
-  children: string | JSX.Element | JSX.Element[] | string[];
+  children?: string | JSX.Element | JSX.Element[] | string[];
   size?: "small" | "normal" | "big";
   variant?: "contained" | "outlined";
-  color?: "secondary" | "primary";
+  color?: "secondary" | "primary" | "danger";
   shape?: "round" | "square";
   classes?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onClick?: () => any;
+  onClick?: (...args: any[]) => any;
 };
 
 const Button: FC<Props> = (props: Props) => {
@@ -18,7 +18,9 @@ const Button: FC<Props> = (props: Props) => {
     color = "primary",
     classes,
     shape = "",
-    onClick = () => {},
+    onClick = (e) => {
+      e.preventDefault();
+    },
   } = props;
 
   return (

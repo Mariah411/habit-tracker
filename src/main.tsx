@@ -11,6 +11,7 @@ import TaskPage from "./pages/TaskPage.tsx";
 
 const router = createBrowserRouter([
   {
+    path: "/",
     element: <AppLayout />,
     children: [
       {
