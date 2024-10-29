@@ -1,6 +1,8 @@
 import dayjs from "dayjs";
 import "dayjs/locale/ru";
 import { StrictMode } from "react";
+import "./Calendar.css";
+// import "react-calendar/dist/Calendar.css";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AppLayout from "./components/AppLayout.tsx";

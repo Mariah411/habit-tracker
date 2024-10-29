@@ -82,7 +82,6 @@ const TaskPage = () => {
 
   return (
     <>
-      {/* <AlertBox text="Произошла ошибка при добавлении" type="danger" /> */}
       <DayTabs today={today} currDay={currDay} setCurrDay={setCurrDay} />
       {isLoading && <Loader />}
 
@@ -111,7 +110,6 @@ const TaskPage = () => {
           );
         })}
 
-        {/* <Button onClick={notify}>Клик</Button> */}
         <FloatingButton onClick={handleOpen} />
         <Modal
           showModal={showModal}

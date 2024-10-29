@@ -82,6 +82,7 @@ const SettingsPage = () => {
           habbits_arr.map((habbit) => {
             return (
               <HabbitCard
+                key={habbit.id}
                 habbit={habbit}
                 setEditableHabbit={setEditableHabbit}
                 handleOpenForm={openEditForm}
