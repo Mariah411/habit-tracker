@@ -85,7 +85,7 @@ const TaskPage = () => {
       <DayTabs today={today} currDay={currDay} setCurrDay={setCurrDay} />
       {isLoading && <Loader />}
 
-      <div className="pb-16">
+      <div>
         {currDayTasks.uncompleted.map((task) => {
           return (
             <HabbitTask

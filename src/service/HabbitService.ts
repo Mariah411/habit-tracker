@@ -63,3 +63,18 @@ export const getTasks = async (currDay: Dayjs) => {
 
   return { completed, uncompleted };
 };
+
+export const getHabbitMonthReport = async (
+  id: number | string,
+  month: { startOfMonth: Dayjs; endOfMonth: Dayjs }
+) => {
+  return await db.complete_habbits
+    .where(["id+date"])
+    .between(
+      [id, month.startOfMonth.toDate()],
+      [id, month.endOfMonth.toDate()],
+      true,
+      true
+    )
+    .toArray();
+};
