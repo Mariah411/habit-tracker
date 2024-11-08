@@ -2,7 +2,12 @@ import { Outlet } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import NavBar from "./ui/NavBar/NavBar";
 
+import { useMemo } from "react";
+import { TodayContext } from "../contexts.ts";
+
 const AppLayout = () => {
+  const today = useMemo(() => new Date(new Date().setHours(0, 0, 0, 0)), []);
+
   return (
     <div className="relative flex justify-start">
       <NavBar />
@@ -21,7 +26,9 @@ const AppLayout = () => {
               pauseOnHover
               theme="light"
             />
-            <Outlet />
+            <TodayContext.Provider value={today}>
+              <Outlet />
+            </TodayContext.Provider>
           </>
         </div>
       </div>

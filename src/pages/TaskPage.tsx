@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import DayTabs from "../components/DayTabs";
 // import DayButton from "../components/ui/DayButton/DayButton";
 import dayjs, { Dayjs } from "dayjs";
@@ -6,17 +6,13 @@ import HabbitTask from "../components/HabbitTask";
 import Modal from "../components/ui/Modal/Modal";
 
 import { useLiveQuery } from "dexie-react-hooks";
+
+import "react-toastify/dist/ReactToastify.css";
 import FloatingButton from "../components/ui/Button/FloatingButton";
 import Form from "../components/ui/Form/Form";
 import Loader from "../components/ui/Loader/Loader";
+import { TodayContext } from "../contexts";
 import { getTasks } from "../service/HabbitService";
-
-import "react-toastify/dist/ReactToastify.css";
-
-// type FormFields = {
-//   name: string;
-//   days: boolean[];
-// };
 
 const Divider = () => (
   <div className="inline-flex items-center justify-start w-full">
@@ -46,23 +42,15 @@ const Divider = () => (
 );
 
 const TaskPage = () => {
-  const today = useMemo(
-    () =>
-      dayjs()
-        .set("hour", 0)
-        .set("minute", 0)
-        .set("second", 0)
-        .set("millisecond", 0),
-    []
-  );
+  const today = useContext(TodayContext);
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const [currDay, setCurrDay] = useState<Dayjs>(today);
+  const [currDay, setCurrDay] = useState<Dayjs>(dayjs(today));
   const [hasChanges, setHasChanges] = useState(false);
 
   useEffect(() => {
-    setCurrDay(today);
+    setCurrDay(dayjs(today));
   }, []);
 
   const [showModal, setShowModal] = useState(false);
@@ -78,11 +66,9 @@ const TaskPage = () => {
 
   if (!currDayTasks) return null;
 
-  // const notify = () => toast("Wow so easy !");
-
   return (
     <>
-      <DayTabs today={today} currDay={currDay} setCurrDay={setCurrDay} />
+      <DayTabs currDay={currDay} setCurrDay={setCurrDay} />
       {isLoading && <Loader />}
 
       <div>

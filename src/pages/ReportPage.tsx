@@ -1,8 +1,9 @@
 import dayjs, { Dayjs } from "dayjs";
 import { useLiveQuery } from "dexie-react-hooks";
-import { FC, useEffect, useMemo, useState } from "react";
+import { FC, useContext, useEffect, useMemo, useState } from "react";
 import Calendar from "react-calendar";
 import DatePicker, { Value } from "../components/ui/DatePicker/DatePicker";
+import { TodayContext } from "../contexts";
 import { db } from "../service/db";
 import { getHabbitMonthReport } from "../service/HabbitService";
 import { IHabbit } from "../types";
@@ -11,11 +12,11 @@ type HabbitReportProps = {
   habbit: IHabbit;
   // currDate: Value;
   month: { startOfMonth: Dayjs; endOfMonth: Dayjs };
-  today: Date;
 };
 
 const HabbitReport: FC<HabbitReportProps> = (props: HabbitReportProps) => {
-  const { habbit, month, today } = props;
+  const today = useContext(TodayContext);
+  const { habbit, month } = props;
 
   const [highlightedDays, setHighlightedDays] = useState<number[]>([]);
 
@@ -34,7 +35,8 @@ const HabbitReport: FC<HabbitReportProps> = (props: HabbitReportProps) => {
     const isSelected = highlightedDays.indexOf(date.getDate()) >= 0;
 
     const mustBeDone = habbit.days[date.getDay()];
-    const isToday = date.setSeconds(0, 0) === today;
+
+    const isToday = date.setSeconds(0, 0) === +today;
 
     if (view === "month") {
       let classes = "";
@@ -71,16 +73,12 @@ const HabbitReport: FC<HabbitReportProps> = (props: HabbitReportProps) => {
 const ReportPage = () => {
   const habbits_arr = useLiveQuery(() => db.habbits.toArray());
 
-  const today = new Date().setHours(0, 0, 0, 0);
+  const today = useContext(TodayContext);
 
   const startOfCurrMonth = useMemo(() => {
-    return dayjs()
-      .set("date", 1)
-      .set("hour", 0)
-      .set("minute", 0)
-      .set("second", 0)
-      .set("millisecond", 0);
+    return dayjs(today);
   }, []);
+
   const [currDate, setCurrDate] = useState<Value>(startOfCurrMonth.toDate());
 
   const [month, setMonth] = useState({
@@ -98,18 +96,10 @@ const ReportPage = () => {
   if (!habbits_arr) return null;
   return (
     <div>
-      {/* <div className="flex justify-start items-center">
-        <span>Выберите месяц:</span> */}
-
       <DatePicker value={currDate} onChange={setCurrDate} />
-      <div className="grid gap-x-8 gap-y-4 grid-cols-1 md:grid-cols-2">
+      <div className="grid gap-x-4 gap-y-4 grid-cols-1 md:grid-cols-2">
         {habbits_arr.map((habbit) => (
-          <HabbitReport
-            key={habbit.id}
-            habbit={habbit}
-            month={month}
-            today={today}
-          />
+          <HabbitReport key={habbit.id} habbit={habbit} month={month} />
         ))}
       </div>
     </div>

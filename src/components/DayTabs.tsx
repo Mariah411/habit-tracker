@@ -1,10 +1,11 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
 
 import dayjs, { Dayjs } from "dayjs";
 
 import calendar from "dayjs/plugin/calendar";
 import weekday from "dayjs/plugin/weekday";
 import { useMemo } from "react";
+import { TodayContext } from "../contexts";
 import Button from "./ui/Button/Button";
 
 type Props = {
@@ -12,21 +13,21 @@ type Props = {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setCurrDay?: any;
-  today: Dayjs;
 };
 
 dayjs.extend(weekday);
 dayjs.extend(calendar);
 
 const DayTabs: FC<Props> = (props: Props) => {
-  const { currDay, setCurrDay, today } = props;
+  const { currDay, setCurrDay } = props;
+  const today = useContext(TodayContext);
   const week = useMemo(() => {
     const w: Dayjs[] = [] as Dayjs[];
-    const todayNum = today.weekday();
+    const todayNum = dayjs(today).weekday();
 
     for (let i = todayNum - 6; i <= todayNum; i++) {
       w.push(
-        today
+        dayjs(today)
           .weekday(i)
           .set("hour", 0)
           .set("minute", 0)

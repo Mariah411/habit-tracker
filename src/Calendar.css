@@ -288,12 +288,13 @@ abbr:where([title]) {
   background: #ffe4e6 !important;
 }
 
-/* .today {
-  color: #fff !important;
-} */
+.today {
+  color: white !important;
+  background-color: #c7d2fe !important;
+}
 
 .today.done {
-  background-color: #6ee7b7 !important;
+  background-color: #34d399 !important;
 }
 
 .today.missed {
@@ -301,5 +302,5 @@ abbr:where([title]) {
 }
 
 .future {
-  background: #f1f5f9 !important;
+  background: #f3f4f6 !important;
 }
