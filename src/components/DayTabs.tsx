@@ -13,13 +13,14 @@ type Props = {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setCurrDay?: any;
+  setChangingDay: any;
 };
 
 dayjs.extend(weekday);
 dayjs.extend(calendar);
 
 const DayTabs: FC<Props> = (props: Props) => {
-  const { currDay, setCurrDay } = props;
+  const { currDay, setCurrDay, setChangingDay } = props;
   const today = useContext(TodayContext);
   const week = useMemo(() => {
     const w: Dayjs[] = [] as Dayjs[];
@@ -38,6 +39,12 @@ const DayTabs: FC<Props> = (props: Props) => {
     return w;
   }, [today]);
 
+  const handleClick = (day) => {
+    setChangingDay(true);
+    setCurrDay(day);
+    setChangingDay(true);
+  };
+
   return (
     <>
       <div className="sticky top-0 z-40 bg-white max-w-full border border-gray-200 rounded-b-lg shadow shadow-lg py-5">
@@ -47,7 +54,11 @@ const DayTabs: FC<Props> = (props: Props) => {
               {day.isSame(today) ? (
                 <div className="relative">
                   <Button
-                    onClick={() => setCurrDay(day)}
+                    onClick={() => {
+                      setChangingDay(true);
+                      setCurrDay(day);
+                      setChangingDay(false);
+                    }}
                     variant={"contained"}
                     // classes={`flex flex-col p-1 text-xs md:p-2 md:text-sm  justify-center items-center  md:flex-row md:justify-around ${
                     //   day.isSame(currDay) ? "primary" : "secondary"
@@ -67,7 +78,11 @@ const DayTabs: FC<Props> = (props: Props) => {
               ) : (
                 <>
                   <Button
-                    onClick={() => setCurrDay(day)}
+                    onClick={() => {
+                      setChangingDay(true);
+                      setCurrDay(day);
+                      setChangingDay(false);
+                    }}
                     variant={"contained"}
                     // classes={`flex flex-col p-1 text-xs md:p-2 md:text-sm  justify-center items-center  md:flex-row md:justify-around ${
                     //   day.isSame(currDay) ? "primary" : "secondary"

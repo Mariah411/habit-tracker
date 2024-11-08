@@ -72,3 +72,46 @@
 .day-btn-active {
   @apply bg-primary-600 text-white;
 } */
+
+/* .task-list-enter {
+  opacity: 0;
+} */
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+}
+
+.task-list-enter-active {
+  animation: fade-in 200ms forwards;
+}
+/* .task-list-exit {
+  opacity: 1;
+} */
+.task-list-exit-active {
+  animation: fade-out 200ms forwards;
+}
+
+.item-exit-active {
+  animation: fade-out 200ms forwards;
+}
+.item-enter-active {
+  animation: fade-in 200ms forwards;
+}

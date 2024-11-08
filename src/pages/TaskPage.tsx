@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import DayTabs from "../components/DayTabs";
 // import DayButton from "../components/ui/DayButton/DayButton";
 import dayjs, { Dayjs } from "dayjs";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import HabbitTask from "../components/HabbitTask";
 import Modal from "../components/ui/Modal/Modal";
 
@@ -47,6 +48,7 @@ const TaskPage = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const [currDay, setCurrDay] = useState<Dayjs>(dayjs(today));
+  const [changingDay, setChangingDay] = useState(false);
   const [hasChanges, setHasChanges] = useState(false);
 
   useEffect(() => {
@@ -68,33 +70,53 @@ const TaskPage = () => {
 
   return (
     <>
-      <DayTabs currDay={currDay} setCurrDay={setCurrDay} />
+      <DayTabs
+        setChangingDay={setChangingDay}
+        currDay={currDay}
+        setCurrDay={setCurrDay}
+      />
       {isLoading && <Loader />}
 
       <div>
-        {currDayTasks.uncompleted.map((task) => {
-          return (
-            <HabbitTask
-              key={task.id}
-              {...task}
-              setHasChanges={setHasChanges}
-              date={currDay.toDate()}
-            />
-          );
-        })}
+        <CSSTransition in={changingDay} timeout={200} classNames="task-list">
+          <div className="task-list">
+            <TransitionGroup component="ul">
+              {currDayTasks.uncompleted.map((task) => {
+                return (
+                  <CSSTransition key={task.id} timeout={200} classNames="item">
+                    <li className="item">
+                      <HabbitTask
+                        key={task.id}
+                        {...task}
+                        setHasChanges={setHasChanges}
+                        date={currDay.toDate()}
+                      />
+                    </li>
+                  </CSSTransition>
+                );
+              })}
+            </TransitionGroup>
 
-        <Divider />
+            <Divider />
 
-        {currDayTasks.completed.map((task) => {
-          return (
-            <HabbitTask
-              key={task.id}
-              setHasChanges={setHasChanges}
-              {...task}
-              date={currDay.toDate()}
-            />
-          );
-        })}
+            <TransitionGroup component="ul">
+              {currDayTasks.completed.map((task) => {
+                return (
+                  <CSSTransition key={task.id} timeout={200} classNames="item">
+                    <li className="item">
+                      <HabbitTask
+                        key={task.id}
+                        setHasChanges={setHasChanges}
+                        {...task}
+                        date={currDay.toDate()}
+                      />
+                    </li>
+                  </CSSTransition>
+                );
+              })}
+            </TransitionGroup>
+          </div>
+        </CSSTransition>
 
         <FloatingButton onClick={handleOpen} />
         <Modal
