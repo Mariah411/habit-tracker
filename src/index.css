@@ -2,8 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* fixed bottom-0 left-0 right-0 */
 .navbar {
-  @apply flex bg-white flex-row justify-evenly fixed bottom-0 left-0 right-0 border-t-2;
+  @apply flex bg-white flex-row justify-evenly z-50 fixed  bottom-0 left-0 right-0 border-t-2;
 }
 
 .navbar-lg {
@@ -11,7 +12,7 @@
 }
 
 .btn {
-  @apply p-2 rounded-md cursor-pointer transition-colors;
+  @apply p-2 rounded-md cursor-pointer transition-colors duration-500 active:scale-105;
 }
 
 .btn.round {
@@ -99,19 +100,74 @@
   }
 }
 
-.task-list-enter-active {
+@keyframes hide-show {
+  0% {
+    opacity: 1;
+  }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/* /* .task-list-enter-active {
   animation: fade-in 200ms forwards;
 }
 /* .task-list-exit {
   opacity: 1;
-} */
+}
 .task-list-exit-active {
   animation: fade-out 200ms forwards;
-}
+} */
 
 .item-exit-active {
   animation: fade-out 200ms forwards;
 }
 .item-enter-active {
   animation: fade-in 200ms forwards;
+}
+
+.task-list-exit-active {
+  animation: hide-show 500ms;
+}
+
+.page {
+  height: 100vh;
+}
+
+.page-enter {
+  opacity: 0;
+}
+
+.page-enter-active {
+  opacity: 1;
+
+  transition: opacity 300ms, transform 300ms;
+}
+
+.page-exit {
+  opacity: 1;
+}
+
+.page-exit-active {
+  opacity: 0;
+
+  transition: opacity 300ms, transform 300ms;
+}
+
+.dialog-enter {
+  opacity: 1;
+}
+.dialog-enter-active {
+  opacity: 0;
+  transition: opacity 300ms, transform 300ms;
+}
+.dialog-exit {
+  opacity: 0;
+}
+.dialog-exit-active {
+  opacity: 1;
+
+  transition: opacity 300ms, transform 300ms;
 }

@@ -14,7 +14,11 @@ const NavButton: FC<NavButtonProps> = (props: NavButtonProps) => {
   const textColor = isActive ? "text-gray-900" : "text-gray-400";
   return (
     <Link to={path} className={`font-semibold leading-6 lg:ml-5 ${textColor}`}>
-      <div className="flex flex-col items-center lg:flex-row mx-3 my-2 lg:my-3 text-sm lg:text-md">
+      <div
+        className={`${
+          isActive && "scale-110"
+        } transition-transform transition-colors active:scale-110 flex flex-col items-center lg:flex-row mx-3 my-2 lg:my-3 text-sm lg:text-md`}
+      >
         {icon(fillColor)}
         <span className="lg:ml-3">{text}</span>
       </div>
@@ -49,7 +53,8 @@ const NavBar: FC = () => {
 
   // const { activeKey } = props;
   return (
-    <div className="navbar navbar-lg z-40">
+    // <div className="absolute bottom-0 left-0">
+    <div className="navbar navbar-lg ">
       {NavBarItems.map((item) => (
         <NavButton
           key={item.path}
@@ -58,6 +63,7 @@ const NavBar: FC = () => {
         />
       ))}
     </div>
+    // </div>
   );
 };
 

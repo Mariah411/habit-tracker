@@ -1,18 +1,23 @@
-import { Outlet } from "react-router-dom";
+import { useLocation, useOutlet } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import NavBar from "./ui/NavBar/NavBar";
 
 import { useMemo } from "react";
+import { CSSTransition, SwitchTransition } from "react-transition-group";
 import { TodayContext } from "../contexts.ts";
 
 const AppLayout = () => {
   const today = useMemo(() => new Date(new Date().setHours(0, 0, 0, 0)), []);
 
+  const location = useLocation();
+  const currentOutlet = useOutlet();
+
   return (
-    <div className="relative flex justify-start">
+    <div className="relative flex justify-start ">
       <NavBar />
+
       <div className="container max-w-4xl px-2 mx-auto ">
-        <div className="lg:ml-52 pb-16">
+        <div className="lg:ml-52 ">
           <>
             <ToastContainer
               position="top-center"
@@ -27,7 +32,17 @@ const AppLayout = () => {
               theme="light"
             />
             <TodayContext.Provider value={today}>
-              <Outlet />
+              <SwitchTransition>
+                <CSSTransition
+                  key={location.pathname}
+                  timeout={300}
+                  classNames="page"
+                  unmountOnExit
+                >
+                  {() => <div className="page">{currentOutlet}</div>}
+                </CSSTransition>
+              </SwitchTransition>
+              {/* <Outlet /> */}
             </TodayContext.Provider>
           </>
         </div>

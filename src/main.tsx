@@ -4,30 +4,27 @@ import { StrictMode } from "react";
 import "./Calendar.css";
 // import "react-calendar/dist/Calendar.css";
 import { createRoot } from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import AppLayout from "./components/AppLayout.tsx";
+import { RouterProvider } from "react-router-dom";
 import "./index.css";
-import ReportPage from "./pages/ReportPage.tsx";
-import SettingsPage from "./pages/SettingsPage.tsx";
-import TaskPage from "./pages/TaskPage.tsx";
+import { router } from "./router.tsx";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <AppLayout />,
-    children: [
-      {
-        path: "/",
-        element: <TaskPage />,
-      },
-      { path: "/settings", element: <SettingsPage /> },
-      {
-        path: "/report",
-        element: <ReportPage />,
-      },
-    ],
-  },
-]);
+// const router = createBrowserRouter([
+//   {
+//     path: "/",
+//     element: <AppLayout />,
+//     children: [
+//       {
+//         path: "/",
+//         element: <TaskPage />,
+//       },
+//       { path: "/settings", element: <SettingsPage /> },
+//       {
+//         path: "/report",
+//         element: <ReportPage />,
+//       },
+//     ],
+//   },
+// ]);
 
 dayjs.locale("ru");
 

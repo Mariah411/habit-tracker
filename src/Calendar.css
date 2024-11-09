@@ -149,6 +149,11 @@ abbr[title] {
   background-color: #f0f0f0;
 }
 
+.react-calendar__navigation button:active {
+  transform: scale(105%);
+  transition: all 0.1s;
+}
+
 .react-calendar__navigation button:enabled:hover,
 .react-calendar__navigation button:enabled:focus {
   background-color: #e6e6e6;
@@ -211,6 +216,11 @@ abbr:where([title]) {
   font-size: 0.7em;
   /* margin: 2px 0px !important; */
   position: relative;
+}
+
+.react-calendar__tile:active {
+  transform: scale(105%);
+  transition: all 0.1s;
 }
 
 .react-calendar__tile:disabled {

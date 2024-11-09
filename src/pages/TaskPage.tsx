@@ -2,13 +2,13 @@ import { useContext, useEffect, useState } from "react";
 import DayTabs from "../components/DayTabs";
 // import DayButton from "../components/ui/DayButton/DayButton";
 import dayjs, { Dayjs } from "dayjs";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
 import HabbitTask from "../components/HabbitTask";
 import Modal from "../components/ui/Modal/Modal";
 
 import { useLiveQuery } from "dexie-react-hooks";
 
 import "react-toastify/dist/ReactToastify.css";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import FloatingButton from "../components/ui/Button/FloatingButton";
 import Form from "../components/ui/Form/Form";
 import Loader from "../components/ui/Loader/Loader";
@@ -68,6 +68,53 @@ const TaskPage = () => {
 
   if (!currDayTasks) return null;
 
+  const TasksGroup = (
+    // props: {
+    type: "complited" | "uncomplited"
+    //   changingDay: boolean;
+    // }
+  ) => {
+    // const { type } = props;
+    const currArr =
+      type === "complited" ? currDayTasks.completed : currDayTasks.uncompleted;
+    const emptyText =
+      type === "complited"
+        ? "Нет выполненных задач..."
+        : "Все задачи выполнены!";
+
+    if (currArr.length === 0)
+      return (
+        <div className="p-2 text-center text-gray-300 font-semibold">
+          {emptyText}
+        </div>
+      );
+    return (
+      <TransitionGroup component="ul">
+        {currArr.map((task) => {
+          return (
+            <CSSTransition
+              enter={!changingDay}
+              exit={!changingDay}
+              key={task.id}
+              timeout={200}
+              classNames="item"
+              unmountOnExit
+            >
+              <li className="item">
+                <HabbitTask
+                  key={task.id}
+                  {...task}
+                  setHasChanges={setHasChanges}
+                  date={currDay.toDate()}
+                />
+              </li>
+            </CSSTransition>
+          );
+        })}
+      </TransitionGroup>
+    );
+  };
+
   return (
     <>
       <DayTabs
@@ -77,46 +124,21 @@ const TaskPage = () => {
       />
       {isLoading && <Loader />}
 
-      <div>
-        <CSSTransition in={changingDay} timeout={200} classNames="task-list">
-          <div className="task-list">
-            <TransitionGroup component="ul">
-              {currDayTasks.uncompleted.map((task) => {
-                return (
-                  <CSSTransition key={task.id} timeout={200} classNames="item">
-                    <li className="item">
-                      <HabbitTask
-                        key={task.id}
-                        {...task}
-                        setHasChanges={setHasChanges}
-                        date={currDay.toDate()}
-                      />
-                    </li>
-                  </CSSTransition>
-                );
-              })}
-            </TransitionGroup>
-
-            <Divider />
-
-            <TransitionGroup component="ul">
-              {currDayTasks.completed.map((task) => {
-                return (
-                  <CSSTransition key={task.id} timeout={200} classNames="item">
-                    <li className="item">
-                      <HabbitTask
-                        key={task.id}
-                        setHasChanges={setHasChanges}
-                        {...task}
-                        date={currDay.toDate()}
-                      />
-                    </li>
-                  </CSSTransition>
-                );
-              })}
-            </TransitionGroup>
-          </div>
-        </CSSTransition>
+      <div className="pb-16">
+        <div className={`task-list ${changingDay && "task-list-exit-active"} `}>
+          {currDayTasks.completed.length === 0 &&
+          currDayTasks.uncompleted.length === 0 ? (
+            <div className="p-2 text-center text-gray-300 font-semibold">
+              Нет текущих задач...
+            </div>
+          ) : (
+            <>
+              {TasksGroup("uncomplited")}
+              <Divider />
+              {TasksGroup("complited")}
+            </>
+          )}
+        </div>
 
         <FloatingButton onClick={handleOpen} />
         <Modal

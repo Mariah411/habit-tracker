@@ -95,13 +95,22 @@ const ReportPage = () => {
 
   if (!habbits_arr) return null;
   return (
-    <div>
+    <div className="pb-16">
       <DatePicker value={currDate} onChange={setCurrDate} />
-      <div className="grid gap-x-4 gap-y-4 grid-cols-1 md:grid-cols-2">
-        {habbits_arr.map((habbit) => (
-          <HabbitReport key={habbit.id} habbit={habbit} month={month} />
-        ))}
-      </div>
+
+      {habbits_arr.length === 0 ? (
+        <>
+          <div className="p-2 text-center text-gray-300 font-semibold">
+            Перейдите в настройки, чтобы добавить привычки
+          </div>
+        </>
+      ) : (
+        <div className="grid gap-x-4 gap-y-4 grid-cols-1 md:grid-cols-2">
+          {habbits_arr.map((habbit) => (
+            <HabbitReport key={habbit.id} habbit={habbit} month={month} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

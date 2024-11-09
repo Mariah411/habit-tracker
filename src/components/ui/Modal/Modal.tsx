@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 
 type Props = {
   showModal: boolean;
@@ -11,14 +11,30 @@ type Props = {
 const Modal: FC<Props> = (props: Props) => {
   const { showModal, setShowModal, header, children, width = 0 } = props;
 
+  const [classes, setClasses] = useState("");
+
+  // useEffect(() => {
+  //   if (showModal) {
+  //     setClasses("opacity-1");
+  //   }
+  // }, [showModal]);
+
+  const handleClose = () => {
+    setShowModal(false);
+    // setClasses("opacity-1")
+    // setTimeout(() => setShowModal(false), 300)}
+  };
+
   return (
     <>
       {showModal ? (
         <>
-          <div className="fixed inset-0 z-50 overflow-y-auto ">
+          <div
+            className={`fixed inset-0 z-50 overflow-y-auto transition-opacity`}
+          >
             <div
-              className="fixed inset-0 w-full h-full bg-black opacity-40"
-              onClick={() => setShowModal(false)}
+              className="active:scale-105 fixed inset-0 w-full h-full bg-black opacity-40"
+              onClick={handleClose}
             ></div>
             <div className="flex items-center min-h-screen px-4 py-8">
               <div
@@ -33,7 +49,7 @@ const Modal: FC<Props> = (props: Props) => {
                     </h3>
                     <button
                       className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                      onClick={() => setShowModal(false)}
+                      onClick={handleClose}
                     >
                       <svg
                         className="w-3 h-3"
@@ -55,33 +71,6 @@ const Modal: FC<Props> = (props: Props) => {
                 )}
 
                 <div>{children}</div>
-
-                {/* <div className="mt-3 sm:flex">
-                  <div className="mt-2 text-center sm:ml-4 sm:text-left">
-                    <h4 className="text-lg font-medium text-gray-800">
-                      Delete account ?
-                    </h4>
-                    <p className="mt-2 text-[15px] leading-relaxed text-gray-500">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua.
-                    </p>
-                    <div className="items-center gap-2 mt-3 sm:flex">
-                      <button
-                        className="w-full mt-2 p-2.5 flex-1 text-white bg-red-600 rounded-md outline-none ring-offset-2 ring-red-600 focus:ring-2"
-                        onClick={() => setShowModal(false)}
-                      >
-                        Delete
-                      </button>
-                      <button
-                        className="w-full mt-2 p-2.5 flex-1 text-gray-800 rounded-md outline-none border ring-offset-2 ring-indigo-600 focus:ring-2"
-                        onClick={() => setShowModal(false)}
-                      >
-                        Cancel
-                      </button>
-                    </div>
-                  </div>
-                </div> */}
               </div>
             </div>
           </div>

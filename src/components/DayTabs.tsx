@@ -57,7 +57,7 @@ const DayTabs: FC<Props> = (props: Props) => {
                     onClick={() => {
                       setChangingDay(true);
                       setCurrDay(day);
-                      setChangingDay(false);
+                      setTimeout(() => setChangingDay(false), 500);
                     }}
                     variant={"contained"}
                     // classes={`flex flex-col p-1 text-xs md:p-2 md:text-sm  justify-center items-center  md:flex-row md:justify-around ${
@@ -81,7 +81,7 @@ const DayTabs: FC<Props> = (props: Props) => {
                     onClick={() => {
                       setChangingDay(true);
                       setCurrDay(day);
-                      setChangingDay(false);
+                      setTimeout(() => setChangingDay(false), 500);
                     }}
                     variant={"contained"}
                     // classes={`flex flex-col p-1 text-xs md:p-2 md:text-sm  justify-center items-center  md:flex-row md:justify-around ${

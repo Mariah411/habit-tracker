@@ -34,10 +34,10 @@ const HabbitTask: FC<Props> = (props: Props) => {
     <>
       {!isCompleted ? (
         <>
-          <div className="max-w-full p-6 my-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex justify-between relative">
+          <div className=" max-w-full p-6 my-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex justify-between relative">
             <div>
               <a
-                className="bg-primary absolute top-0 bottom-0 left-0 w-14 rounded-l-lg flex justify-center items-center text-white hover:bg-primary-light"
+                className="bg-primary active:scale-105 absolute top-0 bottom-0 left-0 w-14 rounded-l-lg flex justify-center items-center text-white hover:bg-primary-light"
                 onClick={comply}
               >
                 <CheckIcon />
@@ -53,7 +53,7 @@ const HabbitTask: FC<Props> = (props: Props) => {
           <div className="max-w-full p-6 my-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex justify-between relative">
             <div>
               <a
-                className="bg-secondary absolute top-0 bottom-0 left-0 w-14 rounded-l-lg flex justify-center items-center text-primary hover:bg-secondary-dark"
+                className="bg-secondary active:scale-105 absolute top-0 bottom-0 left-0 w-14 rounded-l-lg flex justify-center items-center text-primary hover:bg-secondary-dark"
                 onClick={cancel}
               >
                 <UndoIcon />
