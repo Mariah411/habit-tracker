@@ -47,7 +47,7 @@ const DayTabs: FC<Props> = (props: Props) => {
 
   return (
     <>
-      <div className="sticky top-0 z-40 bg-white max-w-full border border-gray-200 rounded-b-lg shadow shadow-lg py-5">
+      <div className="sticky dark:bg-gray-800  dark:border-gray-700  top-0 z-40 bg-white max-w-full border border-gray-200 rounded-b-lg shadow shadow-lg py-5">
         <div className="flex justify-evenly">
           {week.map((day) => (
             <span key={day.day()}>

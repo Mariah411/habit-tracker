@@ -43,7 +43,7 @@ const DatePicker = (props: Props) => {
 
   return (
     <>
-      <div className="sticky top-0 z-40 bg-white max-w-full  border border-gray-200 rounded-b-lg shadow shadow-lg p-1 mb-2">
+      <div className="sticky  dark:bg-gray-800  dark:border-gray-700 dark:text-white top-0 z-40 bg-white max-w-full  border border-gray-200 rounded-b-lg shadow shadow-lg p-1 mb-2">
         <div className="w-full flex justify-start items-center p-3 rounded-md ">
           <Button onClick={handleFocus} classes="text-white">
             <svg

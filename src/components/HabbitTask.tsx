@@ -7,10 +7,19 @@ type Props = IHabbit & {
   done: boolean;
   date: Date;
   setHasChanges: any;
+  // setHasComply?: any;
+  // setHasCancel?: any;
 };
 
 const HabbitTask: FC<Props> = (props: Props) => {
-  const { id, name, done, date, setHasChanges } = props;
+  const {
+    id,
+    name,
+    done,
+    date,
+    setHasChanges,
+    //  setHasComply, setHasCancel
+  } = props;
 
   const [isCompleted, setIsCompleted] = useState<boolean>(done || false);
 
@@ -20,13 +29,12 @@ const HabbitTask: FC<Props> = (props: Props) => {
 
   const comply = async () => {
     await complyHabbit(id, date);
-    setIsCompleted(true);
+
     setHasChanges(true);
   };
 
   const cancel = async () => {
     await cancelHabbit(id, date);
-    setIsCompleted(false);
     setHasChanges(true);
   };
 
@@ -53,7 +61,7 @@ const HabbitTask: FC<Props> = (props: Props) => {
           <div className="max-w-full p-6 my-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex justify-between relative">
             <div>
               <a
-                className="bg-secondary active:scale-105 absolute top-0 bottom-0 left-0 w-14 rounded-l-lg flex justify-center items-center text-primary hover:bg-secondary-dark"
+                className="bg-secondary dark:bg-gray-700 dark:text-primary-light hover:dark:bg-gray-600 active:scale-105 absolute top-0 bottom-0 left-0 w-14 rounded-l-lg flex justify-center items-center text-primary hover:bg-secondary-dark"
                 onClick={cancel}
               >
                 <UndoIcon />

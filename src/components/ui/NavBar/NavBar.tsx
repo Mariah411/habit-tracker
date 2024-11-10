@@ -10,8 +10,12 @@ type NavButtonProps = {
 };
 const NavButton: FC<NavButtonProps> = (props: NavButtonProps) => {
   const { icon, text, isActive, path } = props;
-  const fillColor = isActive ? "fill-gray-900" : "fill-gray-400";
-  const textColor = isActive ? "text-gray-900" : "text-gray-400";
+  const fillColor = isActive
+    ? "fill-gray-900 dark:fill-white"
+    : "fill-gray-400";
+  const textColor = isActive
+    ? "text-gray-900 dark:text-white"
+    : "text-gray-400";
   return (
     <Link to={path} className={`font-semibold leading-6 lg:ml-5 ${textColor}`}>
       <div

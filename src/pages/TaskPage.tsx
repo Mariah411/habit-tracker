@@ -11,7 +11,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import FloatingButton from "../components/ui/Button/FloatingButton";
 import Form from "../components/ui/Form/Form";
-import Loader from "../components/ui/Loader/Loader";
 import { TodayContext } from "../contexts";
 import { getTasks } from "../service/HabbitService";
 
@@ -45,8 +44,6 @@ const Divider = () => (
 const TaskPage = () => {
   const today = useContext(TodayContext);
 
-  const [isLoading, setIsLoading] = useState(false);
-
   const [currDay, setCurrDay] = useState<Dayjs>(dayjs(today));
   const [changingDay, setChangingDay] = useState(false);
   const [hasChanges, setHasChanges] = useState(false);
@@ -68,19 +65,17 @@ const TaskPage = () => {
 
   if (!currDayTasks) return null;
 
-  const TasksGroup = (
-    // props: {
-    type: "complited" | "uncomplited"
-    //   changingDay: boolean;
-    // }
-  ) => {
-    // const { type } = props;
+  const TasksGroup = (type: "complited" | "uncomplited") => {
     const currArr =
       type === "complited" ? currDayTasks.completed : currDayTasks.uncompleted;
     const emptyText =
       type === "complited"
         ? "Нет выполненных задач..."
         : "Все задачи выполнены!";
+
+    // currArr = currArr.map((val) => {
+    //   return { ...val, nodeRef: createRef(null) };
+    // });
 
     if (currArr.length === 0)
       return (
@@ -93,10 +88,12 @@ const TaskPage = () => {
         {currArr.map((task) => {
           return (
             <CSSTransition
+              appear={true}
               enter={!changingDay}
               exit={!changingDay}
               key={task.id}
-              timeout={200}
+              timeout={300}
+              // nodeRef={task.nodeRef}
               classNames="item"
             >
               <li className="item">
@@ -121,7 +118,6 @@ const TaskPage = () => {
         currDay={currDay}
         setCurrDay={setCurrDay}
       />
-      {isLoading && <Loader />}
 
       <div className="pb-16">
         <div className={`task-list ${changingDay && "task-list-exit-active"} `}>

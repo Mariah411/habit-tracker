@@ -59,9 +59,15 @@ export const getTasks = async (currDay: Dayjs) => {
     );
   }
 
-  // console.log({ completed, uncompleted });
-
   return { completed, uncompleted };
+};
+
+export const getComplitedTasks = async (currDay: Dayjs) => {
+  return (await getTasks(currDay)).completed;
+};
+
+export const getUncomplitedTasks = async (currDay: Dayjs) => {
+  return (await getTasks(currDay)).uncompleted;
 };
 
 export const getHabbitMonthReport = async (

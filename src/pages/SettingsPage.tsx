@@ -10,7 +10,7 @@ import { IHabbit } from "../types";
 const Divider = () => (
   <div className="inline-flex items-center justify-start w-full">
     <div className="absolute px-4 text-gray-300  transform -translate-y-1 bg-white font-medium dark:bg-gray-900">
-      <span>Все привычки</span>
+      <span>Редактировать привычки</span>
     </div>
     <hr className="w-full h-1 my-5 bg-gray-200 border-0 rounded dark:bg-gray-700" />
   </div>

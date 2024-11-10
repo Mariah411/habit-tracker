@@ -33,14 +33,14 @@ const Modal: FC<Props> = (props: Props) => {
             className={`fixed inset-0 z-50 overflow-y-auto transition-opacity`}
           >
             <div
-              className="active:scale-105 fixed inset-0 w-full h-full bg-black opacity-40"
+              className="active:scale-105 fixed inset-0 w-full h-full bg-black dark:opacity-70 opacity-40"
               onClick={handleClose}
             ></div>
-            <div className="flex items-center min-h-screen px-4 py-8">
+            <div className="flex  items-center min-h-screen px-4 py-8">
               <div
                 className={`relative ${
                   width ? `max-w-[${width}px]` : "w-full max-w-lg"
-                } p-3 mx-auto bg-white rounded-md shadow-lg`}
+                } p-3 mx-auto bg-white dark:bg-gray-900 rounded-md shadow-lg`}
               >
                 {header && (
                   <div className="flex items-center justify-between p-2 md:p-3 border-b rounded-t dark:border-gray-600">
