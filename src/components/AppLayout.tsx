@@ -13,7 +13,7 @@ const AppLayout = () => {
   const currentOutlet = useOutlet();
 
   return (
-    <div className="relative flex justify-start ">
+    <>
       <NavBar />
 
       <div className="container max-w-4xl px-2 mx-auto ">
@@ -47,7 +47,7 @@ const AppLayout = () => {
           </>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

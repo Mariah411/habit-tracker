@@ -64,7 +64,7 @@ const DayTabs: FC<Props> = (props: Props) => {
                     //   day.isSame(currDay) ? "primary" : "secondary"
                     // } `}
 
-                    classes="flex flex-col p-1 text-xs md:p-2 md:text-sm  justify-center items-center  md:flex-row md:justify-around "
+                    classes="flex flex-col p-0.5 text-[11px] midphone:text-xs midphone:p-1 sm:p-2 sm:text-sm  justify-center items-center  md:flex-row md:justify-around "
                     color={day.isSame(currDay) ? "primary" : "secondary"}
                   >
                     <>
@@ -87,7 +87,7 @@ const DayTabs: FC<Props> = (props: Props) => {
                     // classes={`flex flex-col p-1 text-xs md:p-2 md:text-sm  justify-center items-center  md:flex-row md:justify-around ${
                     //   day.isSame(currDay) ? "primary" : "secondary"
                     // } `}
-                    classes="flex flex-col p-1 text-xs md:p-2 md:text-sm  justify-center items-center  md:flex-row md:justify-around "
+                    classes="flex flex-col p-0.5 text-[11px] midphone:text-xs midphone:p-1 sm:p-2 sm:text-sm  justify-center items-center  md:flex-row md:justify-around "
                     color={day.isSame(currDay) ? "primary" : "secondary"}
                   >
                     <>

@@ -98,7 +98,6 @@ const TaskPage = () => {
               key={task.id}
               timeout={200}
               classNames="item"
-              unmountOnExit
             >
               <li className="item">
                 <HabbitTask
