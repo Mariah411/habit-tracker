@@ -83,16 +83,24 @@ const TaskPage = () => {
           {emptyText}
         </div>
       );
+    const onEnter = (node: HTMLElement, isAppearing: boolean) => {
+      if (isAppearing && !changingDay) {
+        node.classList.add("item-enter");
+        node.classList.add("item-enter-active");
+      }
+    };
+
     return (
       <TransitionGroup component="ul">
         {currArr.map((task) => {
           return (
             <CSSTransition
+              onEnter={onEnter}
               appear={true}
               enter={!changingDay}
               exit={!changingDay}
               key={task.id}
-              timeout={300}
+              timeout={{ exit: 300, enter: 600 }}
               // nodeRef={task.nodeRef}
               classNames="item"
             >
