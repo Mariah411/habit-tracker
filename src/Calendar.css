@@ -151,6 +151,10 @@ abbr[title] {
   margin: 0.5em;
 }
 
+.react-calendar__viewContainer {
+  background-color: var(--bg-color) !important;
+}
+
 .react-calendar,
 .react-calendar *,
 .react-calendar *:before,

@@ -2,7 +2,7 @@
 
 import * as colors from "tailwindcss/colors";
 export default {
-  darkMode: "selector",
+  darkMode: "class",
   important: true,
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
@@ -29,7 +29,7 @@ export default {
       current: "currentColor",
       black: colors.black,
       white: colors.white,
-      gray: colors.slate,
+      gray: colors.gray,
       green: colors.emerald,
       purple: colors.violet,
       yellow: colors.amber,

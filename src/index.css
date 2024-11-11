@@ -24,6 +24,21 @@ html {
   /*  */
 }
 
+.day.active {
+  @apply bg-indigo-300 dark:bg-indigo-600;
+  /* @apply text-gray-500 dark:text-white; */
+}
+
+.day {
+  @apply w-[8px] h-[8px] rounded-sm mx-[1px]
+  /* @apply p-[1.5px] text-[9px]; */;
+}
+
+.day.disabled {
+  @apply bg-indigo-100 dark:bg-indigo-900;
+  /* @apply text-gray-300 dark:text-gray-700; */
+}
+
 .btn.norm {
   @apply p-2 text-sm;
 }
@@ -59,11 +74,11 @@ html {
 }
 
 .input {
-  @apply bg-gray-50 border outline-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-2/3 p-2.5 m-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
+  @apply bg-gray-50 border outline-none caret-current border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-2/3 p-2.5 m-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
 }
 
 .input.error {
-  @apply bg-rose-50 dark:bg-dark-rose border dark:border-light-rose dark:placeholder-light-rose border-rose-400 text-rose-900 placeholder-rose-400;
+  @apply bg-rose-50 caret-rose-400 dark:bg-dark-rose border dark:border-light-rose dark:placeholder-light-rose border-rose-400 text-rose-900 placeholder-rose-400;
 }
 
 .error-text {

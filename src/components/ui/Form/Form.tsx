@@ -53,6 +53,7 @@ const Form: FC<Props> = (props: Props) => {
   });
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     console.log(data);
+    data.name = data.name.trim();
     // else {
     switch (mode) {
       case "add":
@@ -137,6 +138,10 @@ const Form: FC<Props> = (props: Props) => {
           placeholder="Название"
           {...register("name", {
             required: "Это поле обязательно для заполнения",
+            setValueAs: (value: string) => value.trim(),
+            // validate: (value) => {
+            //   return !!value.trim();
+            // },
           })}
         />
 

@@ -5,6 +5,7 @@ import "./Calendar.css";
 // import "react-calendar/dist/Calendar.css";
 import { createRoot } from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
+import Theme from "./components/Theme.tsx";
 import "./index.css";
 import { router } from "./router.tsx";
 
@@ -30,6 +31,8 @@ dayjs.locale("ru");
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Theme>
+      <RouterProvider router={router} />
+    </Theme>
   </StrictMode>
 );

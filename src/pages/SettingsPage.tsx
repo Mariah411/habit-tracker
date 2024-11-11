@@ -1,5 +1,6 @@
 import { useLiveQuery } from "dexie-react-hooks";
 import { useEffect, useState } from "react";
+import Theme from "../components/Theme";
 import FloatingButton from "../components/ui/Button/FloatingButton";
 import Form from "../components/ui/Form/Form";
 import { EditIcon } from "../components/ui/Icons";
@@ -7,10 +8,20 @@ import Modal from "../components/ui/Modal/Modal";
 import { db } from "../service/db";
 import { IHabbit } from "../types";
 
-const Divider = () => (
+const days = [
+  { idx: "1", name: "ПН" },
+  { idx: "2", name: "ВТ" },
+  { idx: "3", name: "СР" },
+  { idx: "4", name: "ЧТ" },
+  { idx: "5", name: "ПТ" },
+  { idx: "6", name: "СБ" },
+  { idx: "0", name: "ВС" },
+];
+
+const Divider = (props: { text: string }) => (
   <div className="inline-flex items-center justify-start w-full">
     <div className="absolute px-4 text-gray-300  transform -translate-y-1 bg-white font-medium dark:bg-gray-900">
-      <span>Редактировать привычки</span>
+      <span>{props.text}</span>
     </div>
     <hr className="w-full h-1 my-5 bg-gray-200 border-0 rounded dark:bg-gray-700" />
   </div>
@@ -35,9 +46,22 @@ const HabbitCard = (props: {
         >
           <EditIcon />
         </a>
-        <h5 className="mb-2 pl-14 text-l font-bold tracking-tight text-gray-900 dark:text-white">
+        {/* <div className="mb-2 w-full pl-14 flex items-center justify-between"> */}
+        <h5 className=" pl-14 text-l font-bold tracking-tight text-gray-900 dark:text-white">
           {habbit.name}
         </h5>
+        <div className="absolute top-0 bottom-0 right-0 h-full flex items-center pr-3">
+          <div className="flex justify-start mt-2 my-2">
+            {days.map(({ name, idx }) => (
+              <span
+                className={`day ${habbit.days[+idx] ? "active" : "disabled"}`}
+              >
+                {/* {name} */}
+              </span>
+            ))}
+          </div>
+        </div>
+        {/* </div> */}
       </div>
     </div>
   );
@@ -72,9 +96,23 @@ const SettingsPage = () => {
 
   if (!habbits_arr) return null;
 
+  // const toogleTheme = () => {
+  //   setTheme(theme === "light" ? "dark" : "light");
+  // };
+
   return (
     <>
-      <Divider />
+      <div className="py-3">
+        <Divider text="Общие настройки" />
+        <div className="flex width-1/2   between items-center">
+          <span className=" text-black dark:text-white  px-4">
+            Тема приложения
+          </span>
+          <Theme.ThemeToggler />
+        </div>
+      </div>
+      {/* <Button onClick={toogleTheme}>Переключить тему</Button> */}
+      <Divider text="Редактирование привычек" />
       <div className="pb-16">
         {habbits_arr.length === 0 ? (
           <div className="p-2 text-center text-gray-300 font-semibold">
