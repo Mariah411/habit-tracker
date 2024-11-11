@@ -123,6 +123,11 @@ const Form: FC<Props> = (props: Props) => {
     }
   };
 
+  const resetFields = async (e) => {
+    e.preventDefault();
+    reset();
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="mb-2">
@@ -181,7 +186,9 @@ const Form: FC<Props> = (props: Props) => {
             value="Добавить"
           />
 
-          <Button color="secondary">Сбросить</Button>
+          <Button color="secondary" onClick={resetFields}>
+            Сбросить
+          </Button>
         </>
       )}
 

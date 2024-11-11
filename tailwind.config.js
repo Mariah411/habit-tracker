@@ -44,6 +44,8 @@ export default {
       "secondary-darker": "#312e81",
       background: "#eef2ff",
       rose: colors.rose,
+      "dark-rose": "#6b2742",
+      "light-rose": "ae3876",
     },
     extend: {},
   },

@@ -51,7 +51,7 @@ const HabbitReport: FC<HabbitReportProps> = (props: HabbitReportProps) => {
   // value={month.startOfMonth.toDate()
   return (
     <div className="w-full flex flex-col items-center mt-1 mb-3">
-      <div className="w-[280px] p-1 bg-gray-100 text-center rounded-md">
+      <div className="w-[280px] p-1 bg-gray-100 dark:bg-gray-800 dark:text-white text-center rounded-md">
         <h5 className="font-semibold">{habbit.name}</h5>
       </div>
       <Calendar
