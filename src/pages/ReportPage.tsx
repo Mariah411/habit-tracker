@@ -1,7 +1,7 @@
 import dayjs, { Dayjs } from "dayjs";
 import { useLiveQuery } from "dexie-react-hooks";
 import { FC, useContext, useEffect, useMemo, useState } from "react";
-import Calendar from "react-calendar";
+import Calendar, { TileArgs } from "react-calendar";
 import DatePicker, { Value } from "../components/ui/DatePicker/DatePicker";
 import { TodayContext } from "../contexts";
 import { db } from "../service/db";
@@ -30,7 +30,7 @@ const HabbitReport: FC<HabbitReportProps> = (props: HabbitReportProps) => {
     }
   }, [hDays]);
 
-  function tileClassName({ date, view }) {
+  function tileClassName({ date, view }: TileArgs) {
     const inFuture = date > today;
     const isSelected = highlightedDays.indexOf(date.getDate()) >= 0;
 

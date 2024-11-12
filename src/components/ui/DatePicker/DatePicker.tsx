@@ -1,5 +1,5 @@
-import { useRef, useState } from "react";
-import { Calendar } from "react-calendar";
+import { useState } from "react";
+import { Calendar, OnArgs } from "react-calendar";
 import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
 
@@ -21,16 +21,19 @@ const DatePicker = (props: Props) => {
   const [calendarView, setCalendarView] = useState<View>("year");
 
   const handleFocus = () => setIsFocused(true);
-  const handleBlur = () => setIsFocused(false);
-  const boxRef = useRef(null);
+  // const handleBlur = () => setIsFocused(false);
+  // const boxRef = useRef(null);
 
-  const onClickMonth = (value, event) => {
+  const onClickMonth = (
+    value: Date,
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     setCalendarView("year");
     onChange(value);
     console.log("Clicked month: ", value);
   };
 
-  const onViewChange = ({ action, activeStartDate, value, view }) => {
+  const onViewChange = ({ action, activeStartDate, value, view }: OnArgs) => {
     switch (view) {
       case "decade":
         setCalendarView("decade");

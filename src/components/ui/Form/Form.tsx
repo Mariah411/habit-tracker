@@ -42,12 +42,11 @@ const Form: FC<Props> = (props: Props) => {
   const {
     register,
     handleSubmit,
-    watch,
     reset,
     setError,
     clearErrors,
     getValues,
-    formState: { errors, touchedFields },
+    formState: { errors },
   } = useForm<FormFields>({
     mode: "onChange",
   });
@@ -97,6 +96,7 @@ const Form: FC<Props> = (props: Props) => {
       reset();
       toast.success("Привычка успешно добавлена!");
     } catch (error) {
+      console.log(error);
       toast.error("Произошла ошибка, повторите попытку");
     }
   };
@@ -108,11 +108,12 @@ const Form: FC<Props> = (props: Props) => {
       reset();
       toast.success("Изменения сохранены");
     } catch (error) {
+      console.log(error);
       toast.error("Произошла ошибка, повторите попытку");
     }
   };
 
-  const deleteHabbit = async (e) => {
+  const deleteHabbit = async (e: Event) => {
     e.preventDefault();
     try {
       await DeleteHabbit(habbit.id);
@@ -121,10 +122,11 @@ const Form: FC<Props> = (props: Props) => {
       reset();
     } catch (error) {
       toast.error("Произошла ошибка, повторите попытку");
+      console.log(error);
     }
   };
 
-  const resetFields = async (e) => {
+  const resetFields = async (e: Event) => {
     e.preventDefault();
     reset();
   };

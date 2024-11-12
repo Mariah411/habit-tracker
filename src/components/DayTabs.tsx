@@ -39,11 +39,11 @@ const DayTabs: FC<Props> = (props: Props) => {
     return w;
   }, [today]);
 
-  const handleClick = (day) => {
-    setChangingDay(true);
-    setCurrDay(day);
-    setChangingDay(true);
-  };
+  // const handleClick = (day) => {
+  //   setChangingDay(true);
+  //   setCurrDay(day);
+  //   setChangingDay(true);
+  // };
 
   return (
     <>

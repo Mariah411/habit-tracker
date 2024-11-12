@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 
 type Props = {
   showModal: boolean;
@@ -10,8 +10,6 @@ type Props = {
 
 const Modal: FC<Props> = (props: Props) => {
   const { showModal, setShowModal, header, children, width = 0 } = props;
-
-  const [classes, setClasses] = useState("");
 
   // useEffect(() => {
   //   if (showModal) {

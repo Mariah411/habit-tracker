@@ -52,7 +52,7 @@ const HabbitCard = (props: {
         </h5>
         <div className="absolute top-0 bottom-0 right-0 h-full flex items-center pr-3">
           <div className="flex justify-start mt-2 my-2">
-            {days.map(({ name, idx }) => (
+            {days.map(({ idx }) => (
               <span
                 className={`day ${habbit.days[+idx] ? "active" : "disabled"}`}
               >

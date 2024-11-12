@@ -73,7 +73,7 @@ export const ChartIcon = (color: string) => (
   </svg>
 );
 
-export const CheckIcon: FC = () => (
+export const CheckIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
