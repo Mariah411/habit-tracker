@@ -196,14 +196,17 @@ html {
 /* .item-hidden {
   display: none;
 } */
+
 .item-exit-active {
   /* display: block; */
   animation: fade-out 300ms forwards;
+  animation-timing-function: ease;
 }
 .item-enter-active {
   /* display: block; */
   animation: fade-in 300ms forwards;
   animation-delay: 300ms;
+  animation-timing-function: ease;
 }
 
 .task-list-exit-active {
