@@ -2,7 +2,7 @@ import { useLocation, useOutlet } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import NavBar from "./ui/NavBar/NavBar";
 
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 import { TodayContext } from "../contexts.ts";
 import { useTheme } from "./Theme.tsx";
@@ -15,6 +15,8 @@ const AppLayout = () => {
   const location = useLocation();
 
   const currentOutlet = useOutlet();
+
+  const ref = useRef(null);
 
   return (
     <TodayContext.Provider value={today}>
@@ -41,6 +43,7 @@ const AppLayout = () => {
                 <SwitchTransition>
                   <CSSTransition
                     key={location.pathname}
+                    nodeRef={ref}
                     timeout={300}
                     classNames="page"
                     unmountOnExit

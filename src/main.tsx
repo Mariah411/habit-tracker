@@ -9,25 +9,18 @@ import Theme from "./components/Theme.tsx";
 import "./index.css";
 import { router } from "./router.tsx";
 
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <AppLayout />,
-//     children: [
-//       {
-//         path: "/",
-//         element: <TaskPage />,
-//       },
-//       { path: "/settings", element: <SettingsPage /> },
-//       {
-//         path: "/report",
-//         element: <ReportPage />,
-//       },
-//     ],
-//   },
-// ]);
-
 dayjs.locale("ru");
+
+window.addEventListener("load", async () => {
+  if (navigator.serviceWorker) {
+    try {
+      const reg = await navigator.serviceWorker.register("./serviceWorker.js");
+      // console.log("service worker register success", reg);
+    } catch (e) {
+      console.log("service worker register fail", e);
+    }
+  }
+});
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

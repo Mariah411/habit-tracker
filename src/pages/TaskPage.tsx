@@ -90,12 +90,32 @@ const TaskPage = () => {
       }
     };
 
+    const onEntered = (node: HTMLElement) => {
+      node.classList.remove("item-enter");
+      node.classList.remove("item-enter-active");
+    };
+
+    // const onExit = (node: HTMLElement) => {
+    //   node.classList.add("item-exit");
+    //   node.classList.add("item-exit-active");
+    // };
+
+    // const onAppear = (node: HTMLElement) => {
+    //   if (!changingDay) {
+    //     node.classList.add("item-enter");
+    //     node.classList.add("item-enter-active");
+    //   }
+    // };
+
     return (
       <TransitionGroup component="ul">
         {currArr.map((task) => {
           return (
             <CSSTransition
               onEnter={onEnter}
+              onEntered={onEntered}
+              // onExit={onExit}
+              // onAppear={onAppear}
               appear={true}
               enter={!changingDay}
               exit={!changingDay}

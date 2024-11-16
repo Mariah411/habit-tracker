@@ -30,7 +30,7 @@ const DatePicker = (props: Props) => {
   ) => {
     setCalendarView("year");
     onChange(value);
-    console.log("Clicked month: ", value);
+    // console.log("Clicked month: ", value);
   };
 
   const onViewChange = ({ action, activeStartDate, value, view }: OnArgs) => {

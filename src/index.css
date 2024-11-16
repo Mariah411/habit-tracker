@@ -186,9 +186,9 @@ html {
   animation-delay: 300ms;
 } */
 
-/* .item-exit {
-  display: block;
-} */
+.item-exit {
+  /* opacity: 1; */
+}
 
 /* .item-visible {
   display: block !important;

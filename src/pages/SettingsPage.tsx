@@ -54,6 +54,7 @@ const HabbitCard = (props: {
           <div className="flex justify-start mt-2 my-2">
             {days.map(({ idx }) => (
               <span
+                key={idx}
                 className={`day ${habbit.days[+idx] ? "active" : "disabled"}`}
               >
                 {/* {name} */}
@@ -91,7 +92,7 @@ const SettingsPage = () => {
   };
 
   useEffect(() => {
-    console.log(habbits_arr);
+    // console.log(habbits_arr);
   }, [habbits_arr]);
 
   if (!habbits_arr) return null;

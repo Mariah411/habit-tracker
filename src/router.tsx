@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createHashRouter } from "react-router-dom";
 import AppLayout from "./components/AppLayout";
 import ReportPage from "./pages/ReportPage";
 import SettingsPage from "./pages/SettingsPage";
@@ -10,16 +10,16 @@ export const routes = [
     element: <TaskPage />,
   },
   {
-    path: "/settings",
+    path: "settings",
     element: <SettingsPage />,
   },
   {
-    path: "/report",
+    path: "report",
     element: <ReportPage />,
   },
 ];
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
   {
     path: "/",
     element: <AppLayout />,

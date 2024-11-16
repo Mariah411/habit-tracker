@@ -51,7 +51,7 @@ const Form: FC<Props> = (props: Props) => {
     mode: "onChange",
   });
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
-    console.log(data);
+    // console.log(data);
     data.name = data.name.trim();
     // else {
     switch (mode) {
@@ -77,7 +77,7 @@ const Form: FC<Props> = (props: Props) => {
 
   const validateCheckBox = () => {
     const isValide = getValues("days").reduce((a, b) => a || b);
-    console.log(isValide);
+    // console.log(isValide);
     if (!isValide) {
       setError("days", {
         type: "manual",
