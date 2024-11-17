@@ -30,3 +30,4 @@ MyHabits - трекер привычек, позволяющий легко до
 - React + TypeScript
 - Tailwind CSS
 - Dexie.js
+- Workbox
